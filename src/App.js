@@ -8,13 +8,17 @@ import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
 import { Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from './pages';
 
 const App = () => {
-
+    // Set the default value for the activeMenu variable
     const activeMenu = true;
 
     return (
         <div>
+            {/* Initialize the BrowserRouter for managing navigation */}
             <BrowserRouter>
+                {/* Main application layout */}
                 <div className='flex relative dark:bg-main-dark-bg'>
+
+                    {/* Settings button with a tooltip */}
                     <div className='fixed right-4 bottom-4' style={{ zIndex: '1000' }}>
                         <TooltipComponent content="Settings" position="Top">
                             <button
@@ -29,6 +33,7 @@ const App = () => {
                         </TooltipComponent>
                     </div>
 
+                    {/* Sidebar section */}
                     {activeMenu ? (
                         <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white">
                             <Sidebar />
@@ -39,32 +44,35 @@ const App = () => {
                         </div>
                     )}
 
+                    {/* Main content area */}
                     <div className={
                         `dark:bg-main-bg bg-main-bg min-h-screen w-full ${activeMenu ? 'md:ml-72' : ' flex-2 '}`
                     }>
                         <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
+                            {/* Navbar component */}
                             <Navbar />
                         </div>
                     </div>
 
+                    {/* Define routes for different pages */}
                     <div>
                         <Routes>
-                            {/* dashboard  */}
+                            {/* Dashboard */}
                             <Route path="/" element={(<Ecommerce />)} />
                             <Route path="/ecommerce" element={(<Ecommerce />)} />
 
-                            {/* pages  */}
+                            {/* Pages */}
                             <Route path="/orders" element={<Orders />} />
                             <Route path="/employees" element={<Employees />} />
                             <Route path="/customers" element={<Customers />} />
 
-                            {/* apps  */}
+                            {/* Apps */}
                             <Route path="/kanban" element={<Kanban />} />
                             <Route path="/editor" element={<Editor />} />
                             <Route path="/calendar" element={<Calendar />} />
                             <Route path="/color-picker" element={<ColorPicker />} />
 
-                            {/* charts  */}
+                            {/* Charts */}
                             <Route path="/line" element={<Line />} />
                             <Route path="/area" element={<Area />} />
                             <Route path="/bar" element={<Bar />} />
