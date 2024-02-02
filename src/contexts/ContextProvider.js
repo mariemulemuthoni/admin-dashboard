@@ -16,13 +16,23 @@ const StateContext = createContext();
 export const ContextProvider = ({ children }) => {
     // State hook to manage the activeMenu state within the context.
     const [activeMenu, setActiveMenu] = useState(true);
+    const [isClicked, setIsClicked] = useState(initialState);
+    const [screenSize, setScreenSize] = useState(undefined);
+    const handleClick = (clicked) => {
+        setIsClicked({ ...initialState, [clicked]: true });
+    }
 
     // Provide the state values and updating function to the context.
     return (
         <StateContext.Provider
             value={{
                 activeMenu,
-                setActiveMenu
+                setActiveMenu,
+                isClicked,
+                setIsClicked,
+                handleClick,
+                screenSize,
+                setScreenSize
             }}
         >
             {children}
